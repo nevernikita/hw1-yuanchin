@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>hw1-yuanchin-typesystem</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+  <types>
+    <typeDescription>
+      <name>edu.cmu.cs.hw1.model.AnnotationType</name>
+      <description>A basic type of annotation extends the type Annotation, which contains attributes "begin", "end"， "confidence" and "casProcessorId".</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+    <features>
+        <featureDescription>
+          <name>confidence</name>
+          <description>Record the confidence score assigned.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>casProcessorId</name>
+          <description>Record the name of the component that produce the annotation.</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>edu.cmu.cs.hw1.model.Question</name>
+      <description>Annotate the question.</description>
+      <supertypeName>edu.cmu.cs.hw1.model.AnnotationType</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.cs.hw1.model.Answer</name>
+      <description>Annotate the answer.</description>
+      <supertypeName>edu.cmu.cs.hw1.model.AnnotationType</supertypeName>
+      <features>
+        <featureDescription>
+          <name>isCorrect</name>
+          <description>Record whether the answer is correct.</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.cs.hw1.model.Token</name>
+      <description>Annotate each token span in each question and answer (break on whitespace and punctuation).</description>
+      <supertypeName>edu.cmu.cs.hw1.model.AnnotationType</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.cs.hw1.model.NGram</name>
+      <description>Annotate 1-, 2- and 3-grams of consecutive tokens.</description>
+      <supertypeName>edu.cmu.cs.hw1.model.AnnotationType</supertypeName>
+      <features>
+        <featureDescription>
+          <name>elements</name>
+          <description>Record consecutive tokens in NGram.</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>edu.cmu.cs.hw1.model.Token</elementType>
+        </featureDescription>
+        <featureDescription>
+          <name>elementType</name>
+          <description>Indicate the element type in NGram.</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>edu.cmu.cs.hw1.model.AnswerScore</name>
+      <description>Annotate an answer score to each answer.</description>
+      <supertypeName>edu.cmu.cs.hw1.model.AnnotationType</supertypeName>
+      <features>
+        <featureDescription>
+          <name>score</name>
+          <description>Record the score assigned to the answer.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>answer</name>
+          <description>Indicate which answer the score is assigned to.</description>
+          <rangeTypeName>edu.cmu.cs.hw1.model.Answer</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
